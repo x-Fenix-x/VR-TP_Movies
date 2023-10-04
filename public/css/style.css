@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    padding: 50px;
+    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00b7ff;
+    text-decoration: none;
+}
+img {
+    width: 100%;
+}
+figure {
+    width: 20%;
+}
+.titulo {
+    text-align: center;
+}
+.botonAgregar,
+.botonModificar {
+    color: #ffffff;
+    background-color: #008000;
+    padding: 10px;
+    border-radius: 10px;
+}
+.botonBorrar {
+    color: #ffffff;
+    background-color: #ff0000;
+    padding: 10px;
+    border-radius: 10px;
+}
+.botonVolver {
+    color: #ffffff;
+    background-color: #00b7ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+.formulario {
+    margin: auto;
+    width: 20%;
+}
