@@ -1,24 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>listado de Generos</title>
-    <link rel='stylesheet' href='/css/style.css' />
-</head>
+<%- include('partials/head', {title: 'Listado de géneros' }) %>
 
-<body>
-    <%- include('partials/header') %>
 
-    <h1>LISTADO DE GENEROS</h1>
-    <ul>
-        <% for( let i = 0; i < genres.length; i++ ) { %>
-        <li>
-            <a href="/genres/detail/<%= genres[i].id %>"><%= genres[i].name %></a>
-        </li>
-        <% } %>
-    </ul>
-</body>
+    <body>
+        <%- include('partials/header') %>
+
+            <!-- <h1>Listado de géneros</h1> -->
+
+            <div class="col-12 col-md-10 mx-auto mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <nav class="d-flex justify-content-between" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Géneros</li>
+                            </ol>
+                            <a href="#" class="btn btn-dark btn-sm">Agregar género</a>
+                        </nav>
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="table-dark" scope="col">#</th>
+                                    <th class="table-dark" scope="col">Nombre</th>
+                                    <th class="table-dark d-none d-md-table-cell" scope="col">Ranking</th>
+                                    <th class="table-dark d-none d-md-table-cell" scope="col">Active</th>
+                                    <th class="table-dark" scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% genres.forEach((genre)=> { %>
+                                    <tr>
+                                        <th scope="row">
+                                            <%= genre.id %>
+                                        </th>
+                                        <td>
+                                            <%= genre.name %>
+                                        </td>
+                                        <td class="d-none d-md-table-cell">
+                                            <%= genre.ranking %>
+                                        </td>
+                                        <td class="d-none d-md-table-cell">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                    <%=genre.active && "checked" %> >
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="#" class="btn btn-outline-dark btn-sm"><i
+                                                        class="fas fa-eye"></i></a>
+                                                <a href="#" class="btn btn-outline-dark btn-sm"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-outline-dark btn-sm"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+    </body>
 
 </html>
