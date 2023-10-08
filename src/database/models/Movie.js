@@ -5,38 +5,45 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.BIGINT(10).UNSIGNED,
             primaryKey: true,
             allowNull: false,
-            autoIncrement: true
+            autoIncrement: true,
         },
         // created_at: dataTypes.TIMESTAMP,
         // updated_at: dataTypes.TIMESTAMP,
         title: {
             type: dataTypes.STRING(500),
-            allowNull: false
+            allowNull: false,
         },
         rating: {
             type: dataTypes.DECIMAL(3, 1).UNSIGNED,
-            allowNull: false
+            allowNull: false,
         },
         awards: {
             type: dataTypes.BIGINT(10).UNSIGNED,
-            allowNull: false
+            allowNull: false,
         },
         release_date: {
             type: dataTypes.DATEONLY,
-            allowNull: false
+            allowNull: false,
         },
         length: dataTypes.BIGINT(10),
-        genre_id: dataTypes.BIGINT(10)
+        genre_id: dataTypes.BIGINT(10),
     };
     let config = {
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
-        deletedAt: false
-    }
-    const Movie = sequelize.define(alias,cols,config);
+        deletedAt: false,
+    };
+    const Movie = sequelize.define(alias, cols, config);
 
     //Aquí debes realizar lo necesario para crear las relaciones con los otros modelos (Genre - Actor)
 
-    return Movie
+    Movie.associate = function (models) {
+        Movie.belongsTo(models.Genre, {
+            as: 'genre',
+            foreignKey: 'genre_id',
+        });
+    };
+
+    return Movie;
 };

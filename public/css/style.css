@@ -4,8 +4,8 @@
     padding: 0;
 }
 body {
-    padding: 50px;
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+    padding: 20px;
 }
 
 a {
@@ -21,25 +21,6 @@ figure {
 }
 .titulo {
     text-align: center;
-}
-.botonAgregar,
-.botonModificar {
-    color: #ffffff;
-    background-color: #008000;
-    padding: 10px;
-    border-radius: 10px;
-}
-.botonBorrar {
-    color: #ffffff;
-    background-color: #ff0000;
-    padding: 10px;
-    border-radius: 10px;
-}
-.botonVolver {
-    color: #ffffff;
-    background-color: #00b7ff;
-    padding: 10px;
-    border-radius: 10px;
 }
 .formulario {
     margin: auto;

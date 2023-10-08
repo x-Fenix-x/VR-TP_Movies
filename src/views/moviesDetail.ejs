@@ -3,7 +3,6 @@
 
 <%- include('partials/head', {title: movie.title }) %>
 
-
 <body>
     <%- include('partials/header') %>
 
@@ -21,12 +20,16 @@
             <h1><%= movie.title %> </h1>    
             <br>
             <p>RATING: <%= movie.rating %> </p>
-            <p>AWARDS: <%= movie.awards %> </p>
-            <p>LENGTH: <%= movie.length + ' min'%> </p>
-            <p>RELEASE DATE: <%= movie.release_date %> </p>
+            <p>PREMIOS: <%= movie.awards %> </p>
+            <p>DURACIÓN: <%= (movie.length != null) ? (movie.length + " min") : "Sin datos" %></p>
+            <p>GÉNERO: <%= movie.genre?.name || "Sin clasificar" %></p>
+            <p>FECHA DE ESTRENO: <%= movie.release_date %> </p>
             <br>
             <section>
                 <!--Aquí debe colocar los botones de Modificar - Borrar y Listado de Películas-->
+            <a href="/movies/edit/<%= movie.id %>" class="btn btn-primary btn-sm">Editar película</a>
+            <a href="/movies/delete/<%= movie.id %>" class="btn btn-danger btn-sm">Eliminar película</a>
+            <a href="/movies" class="btn btn-dark btn-sm ">Listado de Películas</a>
             </section>
         </div>
     </div>
