@@ -2,6 +2,7 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require('sequelize');
+const moment = require('moment');
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
@@ -17,14 +18,14 @@ const moviesController = {
             include: ['genre'],
         }).then((movies) => {
             // return res.send(movies);
-            res.render('moviesList.ejs', { movies });
+            res.render('moviesList.ejs', { movies, moment });
         });
     },
     detail: (req, res) => {
-        db.Movie.findByPk(req.params.id,{
-            include: ['genre']
+        db.Movie.findByPk(req.params.id, {
+            include: ['genre'],
         }).then((movie) => {
-            res.render('moviesDetail.ejs', { movie });
+            return res.render('moviesDetail.ejs', { ...movie.dataValues, moment});
         });
     },
     new: (req, res) => {
@@ -57,8 +58,36 @@ const moviesController = {
             })
             .catch((error) => console.log(error));
     },
-    create: function (req, res) {},
-    edit: function (req, res) {},
+    create: function (req, res) {
+        const { title, rating, awards, release_date, length, genre_id } =
+            req.body;
+
+        db.Movie.create({
+            title: title.trim(),
+            rating,
+            awards,
+            release_date,
+            length,
+            genre_id,
+        })
+            .then(() => {
+                return res.redirect('/movies');
+            })
+            .catch((error) => console.log(error));
+    },
+    edit: function (req, res) {
+        const genres = db.Genre.findAll({
+            order: ['name'],
+        })
+        const movie = db.Movie.findByPk(req.params.id)
+        Promise.all([genres, movie])
+            .then(([genres, movie]) => {
+                return res.render('moviesEdit', {
+                    genres, Movie: movie, moment
+                });
+            })
+            .catch((error) => console.log(error));
+    },
     update: function (req, res) {},
     delete: function (req, res) {},
     destroy: function (req, res) {},

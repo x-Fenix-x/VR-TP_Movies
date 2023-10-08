@@ -72,28 +72,23 @@
                                                         <div class="modal-body">
                                                             <div class="card mb-3">
                                                                 <div class="row g-0">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-12">
                                                                         <div class="card-body">
-                                                                            <h5 class="card-title">Título:
-                                                                                <%=title%>
-                                                                            </h5>
-                                                                            <h5 class="card-title">
-                                                                                Rating: <%=rating%>
-                                                                            </h5>
-                                                                            <h5 class="card-title">
-                                                                                Premios: <%=awards%>
-                                                                            </h5>
-                                                                            <h5 class="card-title">
-                                                                                Duración:
-                                                                                <%= (length != null) ? (length + " min") : "Sin datos" %>
-                                                                            </h5>
-                                                                            <h5 class="card-title">
-                                                                                Género:
-                                                                                <%= genre?.name || "Sin clasificar" %>
-                                                                            </h5>
-                                                                            <h5 class="card-title">
-                                                                                Fecha de estreno: <%=release_date%>
-                                                                            </h5>
+                                                                            <div class="row">
+                                                                                <div class="col-12 col-md-4">
+                                                                                    
+                                                                                </div>
+                                                                                <div class="col-12 col-md-8">
+                                                                                    <ul class="list-group list-group-flush">
+                                                                                        <li class="list-group-item"><b><%= title.toUpperCase() %></b></li>
+                                                                                        <li class="list-group-item"><b>Género: </b><%= genre?.name || "Sin clasificar" %></li>
+                                                                                        <li class="list-group-item"><b>Duración: </b><%= (length != null) ? (length + " min") : "Sin datos" %></li>
+                                                                                        <li class="list-group-item"><b>Calificación: </b><%= rating %></li>
+                                                                                        <li class="list-group-item"><b>Premios: </b><%= awards %></li>
+                                                                                        <li class="list-group-item"><b>Fecha de estreno: </b><%= moment(release_date, 'DDMMMMY').locale('es').format('DD [de] MMMM [de] YYYY') %></li>
+                                                                                      </ul>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
