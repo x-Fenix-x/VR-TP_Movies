@@ -41,7 +41,17 @@ const moviesController = {
         });
     },
     //Aqui dispongo las rutas para trabajar con el CRUD
-    add: function (req, res) {},
+    add: function (req, res) {
+        db.Genre.findAll({
+            order: ['name'],
+        })
+            .then((genres) => {
+                return res.render('moviesAdd', {
+                    genres,
+                });
+            })
+            .catch((error) => console.log(error));
+    },
     create: function (req, res) {},
     edit: function (req, res) {},
     update: function (req, res) {},
