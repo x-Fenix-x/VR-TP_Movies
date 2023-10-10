@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <%- include('partials/head', {title: 'Inicio' }) %>
+<%- include('partials/head', {title: 'Inicio' }) %>
 
   <body class="index">
     <%- include('partials/header') %>
 
-    <h1><%= title %></h1>
-    <p>Bienvenidos a <%= title %></p>
-    <p><a href="/movies" class="btn btn-dark btn-sm">Listado de Películas</a></p>
-    <p><a href="/genres" class="btn btn-dark btn-sm">Listado de Géneros</a></p>
+      <div class="animation-container">
+        <p class="animated-text">Bienvenido a Digital <span class="text-danger">Movies</span>🎃</p>
+      </div>
+
+      <div class="titulo justify-content-between flex-wrap">
+          <div>
+            <a href="/movies" class="btn btn-outline-dark btn-sm p-4"><i class="d-block fa-solid fa-film fs-5"></i> Películas</a>
+            <a href="/genres" class="btn btn-outline-dark btn-sm p-4"><i
+                class="d-block fa-sharp fa-solid fa-masks-theater fs-5"></i> Géneros</a>
+          </div>
+      </div>
   </body>
+
 </html>

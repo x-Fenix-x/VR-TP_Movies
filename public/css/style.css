@@ -7,9 +7,8 @@ body {
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
     padding: 10px;
 }
-
 a {
-    color: #00b7ff;
+    color: #3d6bea;
     text-decoration: none;
 }
 img {
@@ -22,7 +21,41 @@ figure {
 .titulo {
     text-align: center;
 }
-.formulario {
-    margin: auto;
-    width: 20%;
+
+.animation-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.animated-text {
+    animation: slideFromRight 2.5s ease forwards;
+    transform: translateX(100%);
+    font-size: 22px;
+}
+
+@keyframes slideFromRight {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 768px) {
+    .animated-text {
+        font-size: 30px;
+    }
+
+    @keyframes slideFromRight {
+        to {
+            transform: translateX(24%);
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    @keyframes slideFromRight {
+        to {
+            transform: translateX(30%);
+        }
+    }
 }

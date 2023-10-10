@@ -7,6 +7,7 @@
 <body>
     <%- include('partials/header') %>
 
+    <main>
         <h1 class="titulo">Película Editada: <%= Movie.title %>
         </h1>
 
@@ -29,8 +30,8 @@
                         <label for="genre_id" class="form-label">Género 🎭</label>
                         <select name="genre_id" id="genre_id" name="genre_id" class="form-select">
                             <% genres.forEach(genre=> { %>
-                                <option value="<%= genre.id %>">
-                                    <%= genre.name %>
+                                <option value="<%= genre.id %>"
+                                    <%= genre.id === Movie.genre_id && "selected" %>><%= genre.name %>
                                 </option>
                                 <% }); %>
                         </select>
@@ -50,7 +51,23 @@
                     <div class="mb-2 col-md-3">
                         <label for="release_date" class="form-label">Fecha de estreno 📅</label>
                         <input type="date" class="form-control" name="release_date" id="release_date"
-                            value="<%= Movie.release_date %>">
+                        value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>">
+                    </div>
+                    <div class="mb-2 col-12">
+                        <label class="form-label">Actores 🧙‍♀️🧙‍♂️</label>
+                        <hr>
+                        <div class="row">
+                            <% actors.forEach(actor => { %>
+                             <div class="col-12 col-md-3 col-lg-2">
+                                <div class="form-check">
+                                    <input name="actors" class="form-check-input" type="checkbox" <%= Movie.actors.map(actor => actor.id).includes(actor.id) && "checked" %> value="<%= actor.id %>" id="actor <%= actor.id %>">
+                                    <label class="form-check-label" for="actor <%= actor.id %>">
+                                        <%= actor.first_name %> <%= actor.last_name %>
+                                    </label>
+                                  </div>
+                             </div>
+                            <% }) %>
+                        </div>
                     </div>
                     <div class="col-12 d-md-none">
                         <button type="submit" class="btn btn-dark w-100">Actualizar</button>
@@ -61,6 +78,7 @@
                 </form>
             </div>
         </div>
+    </main>
 </body>
 
 </html>

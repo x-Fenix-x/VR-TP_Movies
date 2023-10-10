@@ -8,7 +8,7 @@ router
     .get('/movies/recommended', recomended)
     .get('/movies/detail/:id', detail)
 
-    //Rutas exigidas para la creación del CRUD
+    //Rutas creación del CRUD
     .get('/movies/add', add)
     .post('/movies/create', create)
     .get('/movies/edit/:id', edit)

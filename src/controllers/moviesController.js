@@ -1,7 +1,6 @@
 const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
-const { Op } = require('sequelize');
 const moment = require('moment');
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
@@ -25,7 +24,10 @@ const moviesController = {
         db.Movie.findByPk(req.params.id, {
             include: ['genre'],
         }).then((movie) => {
-            return res.render('moviesDetail.ejs', { ...movie.dataValues, moment});
+            return res.render('moviesDetail.ejs', {
+                ...movie.dataValues,
+                moment,
+            });
         });
     },
     new: (req, res) => {
@@ -46,7 +48,9 @@ const moviesController = {
             res.render('recommendedMovies.ejs', { movies });
         });
     },
-    //Aqui dispongo las rutas para trabajar con el CRUD
+
+    // Rutas para trabajar con el CRUD
+
     add: function (req, res) {
         db.Genre.findAll({
             order: ['name'],
@@ -78,17 +82,81 @@ const moviesController = {
     edit: function (req, res) {
         const genres = db.Genre.findAll({
             order: ['name'],
-        })
-        const movie = db.Movie.findByPk(req.params.id)
-        Promise.all([genres, movie])
-            .then(([genres, movie]) => {
+        });
+        const movie = db.Movie.findByPk(req.params.id, {
+            include: ['actors'],
+        });
+        const actors = db.Actor.findAll({
+            order: [
+                ['first_name', 'ASC'],
+                ['last_name', 'ASC'],
+            ],
+        });
+
+        Promise.all([genres, movie, actors])
+            .then(([genres, movie, actors]) => {
+                // return res.send(movie)
                 return res.render('moviesEdit', {
-                    genres, Movie: movie, moment
+                    genres,
+                    Movie: movie,
+                    actors,
+                    moment,
                 });
             })
             .catch((error) => console.log(error));
     },
-    update: function (req, res) {},
+    update: function (req, res) {
+        let {
+            title,
+            rating,
+            awards,
+            release_date,
+            length,
+            genre_id,
+            actors,
+        } = req.body;
+        actors = typeof actors === 'string' ? [actors] : actors;
+
+        db.Movie.update(
+            {
+                title: title.trim(),
+                rating,
+                awards,
+                release_date,
+                length,
+                genre_id,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        )
+            .then(() => {
+                db.Actor_Movie.destroy({
+                    where: {
+                        movie_id: req.params.id,
+                    },
+                }).then(() => {
+                    if (actors) {
+                        const actorsDB = actors.map((actor) => {
+                            return {
+                                movie_id: req.params.id,
+                                actor_id: actor,
+                            }
+                        })
+
+                        db.Actor_Movie.bulkCreate(actorsDB, {
+                            validate: true,
+                        }).then(() =>
+                            console.log('actores agregados correctamente')
+                        );
+                    }
+                });
+            })
+            .catch((error) => console.log(error))
+            .finally(() => res.redirect('/movies'));
+    },
     delete: function (req, res) {},
     destroy: function (req, res) {},
 };
