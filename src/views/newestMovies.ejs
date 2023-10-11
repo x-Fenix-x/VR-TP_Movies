@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas ordenas por fecha</title>
-    <link rel='stylesheet' href='/css/style.css' />
-</head>
+<%- include('partials/head', {title: "Por fecha" }) %>
 
-<body>
-    <%- include('partials/header') %>
 
-    <h1>PELÍCULAS ORDENADAS POR FECHA</h1>
-    <ul>
-        <% for( let i = 0; i < movies.length; i++ ) { %>
-        <li>
-            <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
-            <%= 'RELEASE DATE: ' + movies[i].release_date %> 
-        </li>
-        <% } %>
-        
-    </ul>
-</body>
+    <body>
+        <%- include('partials/header') %>
+
+            <div class="col-12 col-md-10 mx-auto mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <nav class="d-flex justify-content-between" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/movies">Películas</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Por fecha
+                                </li>
+                            </ol>
+                            <div>
+    
+                            </div>
+                        </nav>
+                    </div>
+    
+                    <div class="card-body">
+                        <ul>
+                            <% for( let i=0; i < movies.length; i++ ) { %>
+                                <li class="mb-2">
+                                    <a href="/movies/detail/<%=movies[i].id%>">
+                                        <%= movies[i].title %>
+                                    </a> <br>
+                                    <%= 'Fecha de estreno: ' + moment(movies[i].release_date).locale('es').format('DD [de] MMMM [de] YYYY') %>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </body>
 
 </html>

@@ -7,7 +7,7 @@
         <%- include('partials/header') %>
 
     <main>
-    <!-- <h1 class="titulo">LISTADO DE PELÍCULAS</h1> -->
+        
     <div class="col-12 col-md-10 mx-auto mt-3">
         <div class="card">
             <div class="card-header">
@@ -92,18 +92,6 @@
                                                                                     <li class="list-group-item"><b>Género: </b><%= genre?.name || "Sin clasificar" %></li>
                                                                                     <li class="list-group-item"><b>Duración: </b><%= (length != null) ? (length + " min") : "Sin datos" %></li>
                                                                                     <li class="list-group-item"><b>Calificación: </b><%= rating %></li>
-                                                                                    <!-- <li class="list-group-item">
-                                                                                        <b>Calificación: </b>
-                                                                                        <% if (rating < 4) { %>
-                                                                                          <span class="text-danger"><%= rating %></span>
-                                                                                        <% } else if (rating < 6) { %>
-                                                                                          <span class="text-warning"><%= rating %></span>
-                                                                                        <% } else { %>
-                                                                                          <span class="text-success"><%= rating %></span>
-                                                                                        <% } %>
-                                                                                      </li> -->
-                                                                                      
-                                                                                      
                                                                                     <li class="list-group-item"><b>Premios: </b><%= awards %></li>
                                                                                     <li class="list-group-item"><b>Fecha de estreno: </b><%= moment(release_date, 'DDMMMMY').locale('es').format('DD [de] MMMM [de] YYYY') %></li>
                                                                                 </ul>
@@ -150,7 +138,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancelar</button>
-                                                        <form action="/movies/remove/<%= id %>?_method=DELETE"
+                                                        <form action="/movies/delete/<%= id %>?_method=DELETE"
                                                             method="POST">
                                                             <button type="submit"
                                                                 class="btn btn-danger">Eliminar</button>

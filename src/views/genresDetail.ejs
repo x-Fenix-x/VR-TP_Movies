@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= genre.name %> </title>
-    <link rel='stylesheet' href='/css/style.css' />
-</head>
-<body>
-    <%- include('partials/header') %>
-   
-    <h1><%= genre.name %> </h1>
-    <br>
-    <p>NAME: <%= genre.name %> </p>
-    <p>RANKIG: <%= genre.ranking %> </p>
 
-</body>
+<%- include('partials/head', {title: genre.name }) %>
+
+
+    <body>
+        <%- include('partials/header') %>
+
+        <div class="col-12 col-md-10 mx-auto mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <nav class="d-flex justify-content-between" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/genres">Géneros</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <%= genre.name %>
+                            </li>
+                        </ol>
+                        <div>
+
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="card-body">
+                    <h1>
+                        <%= genre.name %>
+                    </h1>
+                    <br>
+                    <p>RANKING: <%= genre.ranking %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+
 </html>

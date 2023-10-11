@@ -30,32 +30,20 @@ figure {
 
 .animated-text {
     animation: slideFromRight 2.5s ease forwards;
-    transform: translateX(100%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 100%;
     font-size: 22px;
 }
 
 @keyframes slideFromRight {
     to {
-        transform: translateX(0);
+        left: 50%;
     }
 }
 
 @media (min-width: 768px) {
     .animated-text {
         font-size: 30px;
-    }
-
-    @keyframes slideFromRight {
-        to {
-            transform: translateX(24%);
-        }
-    }
-}
-
-@media (min-width: 1024px) {
-    @keyframes slideFromRight {
-        to {
-            transform: translateX(30%);
-        }
     }
 }
