@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {list, detail, add, create, edit, update, remove, destroy} = require('../controllers/actorsController');
+const actorsAddValidator = require('../validation/actorsAddValidator');
+const actorsEditValidator = require('../validation/actorsEditValidator');
 
 
 router
@@ -9,9 +11,9 @@ router
 
     //Rutas creación del CRUD
     .get('/actors/add', add)
-    .post('/actors/create', create)
+    .post('/actors/create', actorsAddValidator, create)
     .get('/actors/edit/:id', edit)
-    .put('/actors/update/:id', update)
+    .put('/actors/update/:id', actorsEditValidator, update)
     .get('/actors/delete/:id', remove)
     .delete('/actors/delete/:id', destroy);
 

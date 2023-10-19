@@ -35,6 +35,17 @@
                                 <li class="list-group-item"><b>Calificación: </b><%= rating %></li>
                                 <li class="list-group-item"><b>Premios: </b><%= awards %></li>
                                 <li class="list-group-item"><b>Fecha de estreno: </b><%= moment(release_date, 'DDMMMMY').locale('es').format('DD [de] MMMM [de] YYYY') %></li>
+                                <li class="list-group-item"><b>Actores: </b>
+                                    <ul>
+                                        <% if (actors.length === 0) { %>
+                                            <li>Sin actores registrados</li>
+                                        <% } else { %>
+                                            <% actors.forEach(actor => { %>
+                                                <li><%= actor.first_name %> <%= actor.last_name %></li>
+                                            <% }); %>
+                                        <% } %>
+                                    </ul>
+                                </li>                                
                             </ul>
                         </div>
                     </div>

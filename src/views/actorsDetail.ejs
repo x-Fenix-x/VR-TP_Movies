@@ -33,6 +33,17 @@
                                 <li class="list-group-item"><b>Apellido: </b><%= actor.last_name.toUpperCase() %></li>
                                 <li class="list-group-item"><b>Calificación: </b><%= actor.rating %></li>
                                 <li class="list-group-item"><b>ID pelicula favorita: </b><%= (actor.favorite_movie_id != null) ? actor.favorite_movie_id : "Sin película favorita" %></li>
+                                <li class="list-group-item"><b>Peliculas: </b>
+                                    <ul>
+                                        <% if (movies.length === 0) { %>
+                                            <li>Sin películas registradas</li>
+                                        <% } else { %>
+                                            <% movies.forEach(movie => { %>
+                                                <li><%= movie.title %></li>
+                                            <% }); %>
+                                        <% } %>
+                                    </ul>
+                                </li>        
                             </ul>
                         </div>
                     </div>

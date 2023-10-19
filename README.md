@@ -8,6 +8,7 @@ También el mismo proceso se aplica para géneros y actores.
 - Uso de base de datos (MySql).
 - Uso de Sequelize.
 - Implementación CRUD.
+- Validaciones.
 - Template engines (Ejs).
 - Uso de partials.
 

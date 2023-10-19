@@ -26,11 +26,17 @@
                                     <label for="name" class="form-label">Nombre 🎬</label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="<%= genre.name %>">
+                                    <small class="text-danger">
+                                        <%= locals.errors && (errors.name && errors.name.msg) %>
+                                    </small>
                                 </div>
                                 <div class="mb-2 col-md-6">
                                     <label for="ranking" class="form-label">Ranking 📈</label>
                                     <input type="number" class="form-control" name="ranking" id="ranking"
                                         value="<%= genre.ranking %>">
+                                    <small class="text-danger">
+                                        <%= locals.errors && (errors.ranking && errors.ranking.msg) %>
+                                    </small>
                                 </div>
                                 <div class="form-check form-switch mb-2 col-md-6">
                                     <label for="active" class="form-label">Active 🌟</label>

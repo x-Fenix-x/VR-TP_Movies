@@ -12,21 +12,34 @@ const Genres = db.Genre;
 const Actors = db.Actor;
 
 const moviesController = {
-    list: (req, res) => {
-        db.Movie.findAll({
-            include: ['genre'],
-        }).then((movies) => {
-            // return res.send(movies);
-            return res.render('moviesList.ejs', { movies, moment });
-        });
+    list: async (req, res) => {
+        try {
+            const movies = await db.Movie.findAll({
+                include: ['genre', 'actors'],
+            });
+
+            const actors = await db.Actor.findAll({
+                order: [['first_name'], ['last_name']],
+            });
+
+            res.render('moviesList.ejs', {
+                movies,
+                moment,
+                actors,
+            });
+        } catch (error) {
+            console.log('Error:', error);
+        }
     },
     detail: (req, res) => {
         db.Movie.findByPk(req.params.id, {
-            include: ['genre'],
+            include: ['genre', 'actors'],
         }).then((movie) => {
+            const actors = movie.actors;
             return res.render('moviesDetail.ejs', {
                 ...movie.dataValues,
                 moment,
+                actors,
             });
         });
     },
