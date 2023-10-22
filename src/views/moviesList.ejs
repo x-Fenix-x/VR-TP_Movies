@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% movies.forEach(({id, title, rating, awards, genre, length, release_date, actors}, index)=> { %>
+                        <% movies.forEach(({id, title, rating, awards, genre, length, release_date, image, actors}, index)=> { %>
                             <tr>
                                 <th scope="row">
                                     <%= index + 1 %>
@@ -83,8 +83,8 @@
                                                                 <div class="col-12">
                                                                     <div class="card-body">
                                                                         <div class="row">
-                                                                            <div class="col-12 col-md-4">
-                                                                                
+                                                                            <div class="col-12 col-md-4">  
+                                                                                    <img src="/img/<%= image %>" class="img-fluid" alt="">
                                                                             </div>
                                                                             <div class="col-12 col-md-8">
                                                                                 <ul class="list-group list-group-flush">

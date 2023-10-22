@@ -92,6 +92,7 @@ const moviesController = {
             req.body;
 
         const actors = [req.body.actors].flat();
+        console.log('>>>>>>>>>>>>>>', actors);
 
         db.Movie.create({
             title: title.trim(),
@@ -100,6 +101,7 @@ const moviesController = {
             release_date,
             length,
             genre_id,
+            image: req.file ? req.file.filename : null,
         })
             .then((movie) => {
                 if (actors) {
@@ -153,6 +155,8 @@ const moviesController = {
             req.body;
         actors = typeof actors === 'string' ? [actors] : actors;
 
+        const newImage = req.file ? req.file.filename : null;
+
         db.Movie.update(
             {
                 title: title.trim(),
@@ -161,6 +165,7 @@ const moviesController = {
                 release_date,
                 length,
                 genre_id,
+                image: newImage || sequelize.literal('image'),
             },
             {
                 where: {

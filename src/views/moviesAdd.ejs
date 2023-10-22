@@ -19,12 +19,12 @@
                             </nav>
                         </div>
                         <div class="card-body">
-                            <form class="row g-3" action="/movies/create" method="POST">
+                            <form class="row g-3" action="/movies/create" method="POST" enctype="multipart/form-data">
                                 <div class="mb-2 col-md-6">
                                     <label for="title" class="form-label">Título 🎬</label>
                                     <input type="text" class="form-control" name="title" id="title">
                                 </div>
-                                <div class="mb-2 col-md-6">
+                                <div class="mb-2 col-md-3">
                                     <label for="genre_id" class="form-label">Género 🎭</label>
                                     <select name="genre_id" id="genre_id" name="genre_id" class="form-select">
                                         <option value="" hidden selected>Selecciona género</option>
@@ -50,6 +50,10 @@
                                 <div class="mb-2 col-md-3">
                                     <label for="release_date" class="form-label">Fecha de estreno 📅</label>
                                     <input type="date" class="form-control" name="release_date" id="release_date">
+                                </div>
+                                <div class="mb-2 col-md-3">
+                                    <label for="formFile" class="form-label">Cargar imagen 👓</label>
+                                    <input type="file" class="form-control" name="image" id="formFile">
                                 </div>
                                 <div class="mb-2 col-12">
                                     <label class="form-label">Actores</label>
